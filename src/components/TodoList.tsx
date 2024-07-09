@@ -3,7 +3,6 @@ import { List, Button, Layout, Modal, Form, Input, Select, message, Skeleton, Ch
 import TodoItem from './TodoItem';
 import { getTodos, createTodo, updateTodo, deleteTodo } from '../services/todoService';
 import { Todo } from '../types';
-import moment from 'moment'; // Importation de moment.js pour le formatage des dates
 
 const { Header, Footer, Content } = Layout;
 const { Option } = Select;
