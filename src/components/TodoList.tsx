@@ -103,7 +103,7 @@ const TodoList: React.FC = () => {
     };
 
     return (
-        <Layout style={{ height: '100vh' }}>
+        <Layout>
             <Header style={{ color: 'white' }}>
                 TODOLIST 😊
             </Header>
