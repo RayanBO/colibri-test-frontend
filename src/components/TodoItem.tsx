@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { List, Button, Switch, Select } from 'antd';
+import { List, Button, Switch } from 'antd';
 import { Todo } from '../types';
 import moment from 'moment';
 
-const { Option } = Select;
 
 interface TodoItemProps {
     todo: Todo;
@@ -31,10 +30,6 @@ const getColor = (_isFait: boolean, statut: 'IMPORTANT' | 'MOYENNE' | 'FAIBLE') 
 
 const TodoItem: React.FC<TodoItemProps> = ({ todo, onEdit, onDelete, onCheckboxChange, onStatusChange }) => {
     const [loading, setLoading] = useState(false);
-
-    const handleStatusChange = (value: 'IMPORTANT' | 'MOYENNE' | 'FAIBLE') => {
-        onStatusChange(todo, value);
-    };
 
     const handleSwitchChange = async (checked: boolean) => {
         setLoading(true);
