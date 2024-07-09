@@ -8,16 +8,19 @@ const { Header, Footer, Content } = Layout;
 const { Option } = Select;
 
 const TodoList: React.FC = () => {
+    // 🌟 États du composant
     const [todos, setTodos] = useState<Todo[]>([]);
     const [loading, setLoading] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
     const [editingTodo, setEditingTodo] = useState<Partial<Todo> | null>(null);
     const [form] = Form.useForm();
 
+    // 📦 Charger les tâches au montage du composant
     useEffect(() => {
         fetchTodos();
     }, []);
 
+    // 🌀 Fonction pour récupérer les tâches
     const fetchTodos = async () => {
         setLoading(true);
         try {
@@ -30,16 +33,19 @@ const TodoList: React.FC = () => {
         }
     };
 
+    // ➕ Ouvrir le modal pour ajouter une tâche
     const handleAdd = () => {
         setEditingTodo(null);
         setModalVisible(true);
     };
 
+    // ✏️ Ouvrir le modal pour éditer une tâche
     const handleEdit = (todo: Todo) => {
         setEditingTodo(todo);
         setModalVisible(true);
     };
 
+    // ❌ Supprimer une tâche
     const handleDelete = async (id: number) => {
         try {
             await deleteTodo(id);
@@ -50,6 +56,7 @@ const TodoList: React.FC = () => {
         }
     };
 
+    // ✔️ Valider et enregistrer les modifications du modal
     const handleModalOk = async () => {
         try {
             const values = await form.validateFields();
@@ -68,10 +75,12 @@ const TodoList: React.FC = () => {
         }
     };
 
+    // ❎ Fermer le modal
     const handleModalCancel = () => {
         setModalVisible(false);
     };
 
+    // 🔄 Changer l'état "fait" d'une tâche
     const handleCheckboxChange = async (todo: Todo, checked: boolean) => {
         try {
             const updatedTodo = await updateTodo({ ...todo, isFait: checked });
@@ -82,6 +91,7 @@ const TodoList: React.FC = () => {
         }
     };
 
+    // 🔄 Changer le statut d'une tâche
     const handleStatusChange = async (todo: Todo, status: 'IMPORTANT' | 'MOYENNE' | 'FAIBLE') => {
         try {
             const updatedTodo = await updateTodo({ ...todo, statut: status });

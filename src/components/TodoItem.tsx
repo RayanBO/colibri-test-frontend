@@ -3,7 +3,6 @@ import { List, Button, Switch } from 'antd';
 import { Todo } from '../types';
 import moment from 'moment';
 
-
 interface TodoItemProps {
     todo: Todo;
     onEdit: (todo: Todo) => void;
@@ -12,9 +11,10 @@ interface TodoItemProps {
     onStatusChange: (todo: Todo, status: 'IMPORTANT' | 'MOYENNE' | 'FAIBLE') => void;
 }
 
+// 🎨 Fonction pour définir la couleur de fond en fonction du statut et de l'état
 const getColor = (_isFait: boolean, statut: 'IMPORTANT' | 'MOYENNE' | 'FAIBLE') => {
     if (_isFait) {
-        return 'transparent'
+        return 'transparent';
     }
     switch (statut) {
         case 'IMPORTANT':
@@ -31,6 +31,7 @@ const getColor = (_isFait: boolean, statut: 'IMPORTANT' | 'MOYENNE' | 'FAIBLE') 
 const TodoItem: React.FC<TodoItemProps> = ({ todo, onEdit, onDelete, onCheckboxChange, onStatusChange }) => {
     const [loading, setLoading] = useState(false);
 
+    // 🎚 Fonction pour gérer le changement de l'état de complétion via le switch
     const handleSwitchChange = async (checked: boolean) => {
         setLoading(true);
         await onCheckboxChange(todo, checked);
@@ -59,6 +60,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onEdit, onDelete, onCheckboxC
                     <div>{todo.descriptions}</div>
                 </div>
             </div>
+            {/* Sélecteur de statut pour une utilisation future */}
             {/* <Select value={todo.statut} onChange={handleStatusChange} style={{ marginLeft: '10px' }}>
                 <Option value="IMPORTANT">IMPORTANT</Option>
                 <Option value="MOYENNE">MOYENNE</Option>
