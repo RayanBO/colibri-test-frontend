@@ -1,46 +1,144 @@
-# Getting Started with Create React App
+# TODOLIST
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Test technique de Rayan RAVELONIRINA
 
-## Available Scripts
+## Table des matières
 
-In the project directory, you can run:
+- [TODOLIST](#todolist)
+  - [Table des matières](#table-des-matières)
+  - [Introduction](#introduction)
+  - [Fonctionnalités](#fonctionnalités)
+  - [Installation](#installation)
+  - [Points d'API](#points-dapi)
+  - [Utilisation](#utilisation)
+  - [Déploiement](#déploiement)
+  - [Contributions](#contributions)
+  - [Structure du projet](#structure-du-projet)
+  - [Licence](#licence)
 
-### `npm start`
+## Introduction
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Bienvenue dans le projet Todo List ! Ce projet est une application de liste de tâches simple mais puissante, construite avec des technologies web modernes. L'application permet aux utilisateurs de créer, lire, mettre à jour et supprimer des tâches de manière efficace.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **URL du projet :** [https://todo-colibri.web.app](https://todo-colibri.web.app)
+- **Dépôt GitHub :** [https://github.com/RayanBO/colibri-test-frontend](https://github.com/RayanBO/colibri-test-frontend)
 
-### `npm test`
+## Fonctionnalités
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Créer de nouvelles tâches
+- Lire les tâches existantes
+- Mettre à jour les tâches
+- Supprimer les tâches
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clonez le dépôt GitHub :
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    git clone https://github.com/RayanBO/colibri-test-frontend.git
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Accédez au répertoire du projet :
 
-### `npm run eject`
+    ```bash
+    cd colibri-test-frontend
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Installez les dépendances :
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```bash
+    npm install
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Points d'API
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **GET /api/todos** - Récupère toutes les tâches
+- **POST /api/todos** - Crée une nouvelle tâche
+- **PUT /api/todos/:id** - Met à jour une tâche existante
+- **DELETE /api/todos/:id** - Supprime une tâche
 
-## Learn More
+```typescript
+import { Todo } from '../types';
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+const apiUrl = 'https://sandy-zest-peach.glitch.me/api/todos';
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+export const getTodos = async (): Promise<Todo[]> => {
+    const response = await fetch(apiUrl);
+    return await response.json();
+};
+
+export const createTodo = async (todo: Partial<Todo>): Promise<Todo> => {
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(todo),
+    });
+    return await response.json();
+};
+
+export const updateTodo = async (todo: Partial<Todo>): Promise<Todo> => {
+    const response = await fetch(`${apiUrl}/${todo.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(todo),
+    });
+    return await response.json();
+};
+
+export const deleteTodo = async (id: number): Promise<void> => {
+    await fetch(`${apiUrl}/${id}`, {
+        method: 'DELETE',
+    });
+};
+```
+
+## Utilisation
+
+1. Lancez le serveur de développement :
+
+    ```bash
+    npm start
+    ```
+
+2. Ouvrez votre navigateur et accédez à [http://localhost:3000](http://localhost:3000).
+
+## Déploiement
+
+Le projet est déployé sur Firebase à l'URL suivante : [https://todo-colibri.web.app](https://todo-colibri.web.app).
+
+- **Console du projet :** [https://console.firebase.google.com/project/todo-colibri/overview](https://console.firebase.google.com/project/todo-colibri/overview)
+
+Tout merge vers la branche `main` sera automatiquement déployé sur Firebase.
+
+## Contributions
+
+Les contributions sont les bienvenues ! Veuillez soumettre une pull request via GitHub.
+
+## Structure du projet
+
+```
+colibri-test-frontend/
+├── public/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── styles/
+│   ├── types/
+│   ├── utils/
+│   └── index.tsx
+├── .gitignore
+├── package.json
+└── README.md
+```
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails
+
+---
+
+ps : by Rayan Rav. ;)

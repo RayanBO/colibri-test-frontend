@@ -1,6 +1,7 @@
 import { Todo } from '../types';
 
-const apiUrl = 'http://localhost:4000/api/todos';
+// const apiUrl = 'http://localhost:4000/api/todos';  // > URL LOCAL 
+const apiUrl = 'https://sandy-zest-peach.glitch.me/api/todos';
 
 export const getTodos = async (): Promise<Todo[]> => {
     const response = await fetch(apiUrl);
