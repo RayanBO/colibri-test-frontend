@@ -105,7 +105,8 @@ const TodoList: React.FC = () => {
     return (
         <Layout>
             <Header style={{ color: 'white' }}>
-                TODOLIST 😊
+                TODOLIST
+                <Button style={{ marginLeft: 30 }} type="primary" onClick={handleAdd}>Nouvelle tache</Button>
             </Header>
             <Content style={{ padding: '5px' }}>
                 <Skeleton loading={loading} active>
@@ -125,8 +126,7 @@ const TodoList: React.FC = () => {
                 </Skeleton>
             </Content>
             <Footer style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Button type="primary" onClick={handleAdd}>Nouvelle tache</Button>
-                <div>&copy; by Rayan RAVELONIRINA</div>
+                <div>&copy; 2024 by Rayan RAVELONIRINA</div>
             </Footer>
             <Modal
                 visible={modalVisible}
